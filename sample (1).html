@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Login/Signup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+        }
+
+        .container {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background: #fff;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .black-bg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            background: #000;
+            transition: 0.6s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .container.active .black-bg {
+            left: 0;
+        }
+
+        .form-section {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            transition: 0.6s ease-in-out;
+            z-index: 1;
+        }
+
+        .form-section.signin {
+            left: 0;
+        }
+
+        .form-section.signup {
+            left: 50%;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            position: relative;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-bottom: 2px solid #333;
+            outline: none;
+            font-size: 16px;
+            transition: 0.5s;
+        }
+
+        input:focus {
+            border-bottom-color: #000;
+        }
+
+        .btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: 2px solid #000;
+            color: #000;
+            padding: 10px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.5s;
+        }
+
+        .toggle-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .link {
+            color: #666;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        form {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <!-- Black Section with Welcome Text -->
+            <div class="black-bg">
+                <div class="welcome-text">
+                    <h2 id="welcome-heading">WELCOME BACK!</h2>
+                    <p>To keep connected with us please login with your personal info</p>
+                </div>
+            </div>
+
+            <!-- Sign In Form -->
+            <div class="form-section signin">
+                <form>
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <input type="text" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <p class="link">Don't have an account? <a href="#" onclick="toggleForm(); return false;">Sign Up</a></p>
+                   
+                </form>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div class="form-section signup">
+                <form>
+                    <h2>Sign Up</h2>
+                    <div class="form-group">
+                        <input type="text" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                    <p class="link">Already have an account? <a href="#" onclick="toggleForm(); return false;">Login</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const container = document.querySelector('.container');
+            const heading = document.querySelector('#welcome-heading');
+            const paragraph = document.querySelector('.welcome-text p');
+
+            container.classList.toggle('active');
+
+            if (container.classList.contains('active')) {
+                heading.textContent = 'HELLO, FRIEND!';
+                paragraph.textContent = 'Enter your personal details and start your journey with us.';
+            } else {
+                heading.textContent = 'WELCOME BACK!';
+                paragraph.textContent = 'To keep connected with us please login with your personal info.';
+            }
+        }
+    </script>
+</body>
+</html>

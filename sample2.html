@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagonal Login/Signup</title>
+    <style>
+        * {
+          .container.active .form-section.signup h2, 
+    .container.active .form-section.signup .link a {
+        color: #fff; /* Make the Sign Up and Login texts white */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+        }
+
+        .container {
+            position: relative;
+            width: 900px;
+            height: 500px;
+            background: #fff;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 20px;
+            display: flex;
+            transition: 0.6s ease-in-out;
+        }
+
+        .black-bg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            transform: skewX(-20deg);
+            transform-origin: left;
+            z-index: 1;
+            transition: 0.6s ease-in-out;
+        }
+
+        .container.active .black-bg {
+            left: 0;
+        }
+
+        .welcome-text {
+            position: absolute;
+            top: 50%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            z-index: 2;
+            transition: 0.6s ease-in-out;
+        }
+
+        .container.active .welcome-text {
+            left: 30%;
+        }
+
+        .welcome-text h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            font-size: 14px;
+        }
+
+        .form-section {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px;
+            z-index: 3;
+            transition: 0.6s ease-in-out;
+        }
+
+        .form-section.signin {
+            left: 0;
+        }
+
+        .form-section.signup {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        .container.active .form-section.signup {
+            transform: translateX(0);
+        }
+
+        .container.active .form-section.signin {
+            transform: translateX(-100%);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #333;
+        }
+
+        .link {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .link a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="black-bg"></div>
+        <div class="welcome-text">
+            <h2 id="welcome-heading">WELCOME BACK!</h2>
+            <p id="welcome-message">To keep connected with us please login with your personal info.</p>
+        </div>
+
+        <div class="form-section signin">
+            <form>
+                <h2>Login</h2>
+                <div class="form-group">
+                    <input type="text" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p class="link">Don't have an account? <a href="#" onclick="toggleForm(); return false;">Sign Up</a></p>
+            </form>
+        </div>
+
+        <div class="form-section signup">
+            <form>
+                <h2>Sign Up</h2>
+                <div class="form-group">
+                    <input type="text" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <p class="link">Already have an account? <a href="#" onclick="toggleForm(); return false;">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const container = document.querySelector('.container');
+            const heading = document.getElementById('welcome-heading');
+            const message = document.getElementById('welcome-message');
+            container.classList.toggle('active');
+
+            if (container.classList.contains('active')) {
+                heading.textContent = 'HELLO, FRIEND!';
+                message.textContent = 'Enter your details and start your journey with us.';
+            } else {
+                heading.textContent = 'WELCOME BACK!';
+                message.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, rem?';
+            }
+        }
+    </script>
+</body>
+</html>
